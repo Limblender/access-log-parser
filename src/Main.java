@@ -18,20 +18,23 @@ public class Main {
 
             File file = new File(path);
             boolean fileExists = file.exists();
+            boolean isDirectory = file.isDirectory();
 
-            if (fileExists) {
-                validPathCount++;
-                System.out.println("Путь существует!");
-                if (file.isDirectory()) {
-                    System.out.println("Это директория.");
-                } else {
-                    System.out.println("Это файл.");
-                }
-            } else {
+            if (!fileExists) {
                 System.out.println("Путь не существует.");
+                continue;
             }
+
+            validPathCount++;
+            System.out.println("Путь существует!");
+
+            if (isDirectory) {
+                System.out.println("Это директория.");
+            } else {
+                System.out.println("Это файл.");
+            }
+
             System.out.println("Общее количество корректных путей: " + validPathCount);
-            continue;
         }
         scanner.close();
     }
