@@ -1,9 +1,33 @@
 import java.util.Scanner;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.print("Введите текст и нажмите <Enter>: ");
-        String text = new Scanner(System.in).nextLine();
-        System.out.println("Длина текста: " + text.length());
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Введите путь к файлу или директории (или 'exit' для завершения):");
+            String path = scanner.nextLine();
+
+            if (path.equalsIgnoreCase("exit")) {
+                System.out.println("Программа завершена.");
+                break;
+            }
+
+            File file = new File(path);
+            boolean fileExists = file.exists();
+
+            if (fileExists) {
+                System.out.println("Путь существует!");
+                if (file.isDirectory()) {
+                    System.out.println("Это директория.");
+                } else {
+                    System.out.println("Это файл.");
+                }
+            } else {
+                System.out.println("Путь не существует.");
+            }
+        }
+        scanner.close();
     }
 }
