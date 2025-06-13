@@ -4,6 +4,7 @@ import java.io.File;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int validPathCount = 0;
 
         while (true) {
             System.out.println("Введите путь к файлу или директории (или 'exit' для завершения):");
@@ -11,6 +12,7 @@ public class Main {
 
             if (path.equalsIgnoreCase("exit")) {
                 System.out.println("Программа завершена.");
+                System.out.println("Общее количество корректных путей: " + validPathCount);
                 break;
             }
 
@@ -18,6 +20,7 @@ public class Main {
             boolean fileExists = file.exists();
 
             if (fileExists) {
+                validPathCount++;
                 System.out.println("Путь существует!");
                 if (file.isDirectory()) {
                     System.out.println("Это директория.");
@@ -27,6 +30,8 @@ public class Main {
             } else {
                 System.out.println("Путь не существует.");
             }
+            System.out.println("Общее количество корректных путей: " + validPathCount);
+            continue;
         }
         scanner.close();
     }
